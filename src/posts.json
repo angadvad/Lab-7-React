@@ -20,6 +20,13 @@
       "content": "I'm Bender, please insert liquor",
       "author": "Bender",
       "publishedAt": "2018-05-22"
+    },
+    {
+      "title": "my post",
+      "content": "post here",
+      "author": "jo",
+      "publishedAt": "2022-11-17",
+      "id": 4
     }
   ]
 }

@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Emoji from "../components/Emoji.js";
 import { TextField, Button } from '@mui/material';
 
@@ -7,20 +7,21 @@ import { TextField, Button } from '@mui/material';
 
 function Clock() {
   const [clockState, setClockState] = useState(new Date());
-
-  const clock = setInterval(() => {
-    setClockState(new Date());
-  }, 1000);
-
+  const { emoji } = useContext(EmojiContext)
 
   useEffect(() => {
+    //put this inside useEffect to avoid memory leaks - it crashed my browser!
+    const clock = setInterval(() => {
+      setClockState(new Date());
+    }, 1000);    
+
     return function cleanup() {
       clearInterval(clock);
       console.log("Cleaned up clock.")
     }
   }, []);
 
-  return <div style={{ fontSize: "55px", margin: "60px" }}>{clockState.toLocaleTimeString()}</div>;
+  return <div style={{ fontSize: "55px", margin: "60px" }}>{clockState.toLocaleTimeString()} {emoji}</div>; //context lets us reuse common info across components
 }
 
 function GreetingButton() {

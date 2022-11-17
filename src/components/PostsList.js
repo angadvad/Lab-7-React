@@ -103,7 +103,7 @@ export function MaterialUIFormSubmit(props) {
   const handleInput = e => {
     const name = e.target.name;
     const newValue = e.target.value;
-    setFormInput({ [name]: newValue });
+    setFormInput({ [name]: newValue }); //calling this onchange means it's doing the id request on line 78 every time you type a character, not great for performance
   };
 
 
